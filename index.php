@@ -92,13 +92,13 @@ $tasks = [['name' => 'Собеседование в IT компании', 'dateO
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
                                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === 1)) { print('checked'); } ?>>
-                                        <span class="checkbox__text"><?php print(strip_tags($value['name'])); ?></span>
+                                        <span class="checkbox__text"><?php if (isset($value['name'])) { print(strip_tags($value['name'])); } ?></span>
                                     </label>
                                 </td>
                         
                                 <td class="task__file"></td>
 
-                                <td class="task__date"><?php print(strip_tags($value['dateOfCompletion'])); ?></td>
+                                <td class="task__date"><?php if (isset($value['dateOfCompletion'])) { print(strip_tags($value['dateOfCompletion'])); } ?></td>
                             </tr>
                         <?php endif ?>
                     <?php endforeach ?>
