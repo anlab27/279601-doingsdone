@@ -1,5 +1,5 @@
 <?php
-function include_template($name, $data) {
+function include_template(string $name, array $data) : string {
     $name = 'templates/' . $name;
     $result = '';
 
