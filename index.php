@@ -2,6 +2,8 @@
 
 require_once('functions.php');
 
+date_default_timezone_set('Europe/Moscow');
+
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 
@@ -22,4 +24,3 @@ $layout_content = include_template('layout.php', [
 
 print($layout_content);
 ?>
-
