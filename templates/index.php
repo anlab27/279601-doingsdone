@@ -23,7 +23,7 @@
 <table class="tasks">
     <?php foreach ($tasks as $key => $value): ?>
         <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === false || ($value['isCompleted'] === true && $show_complete_tasks === 1))): ?>
-            <tr class="tasks__item task <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === true)) { print('task--completed'); } if (isset($value['dateOfCompletion']) && ($value['dateOfCompletion'] !== '') && ((strtotime('midnight' . $value['dateOfCompletion']) - time()) < 86400)) { print('task--important'); } ?>">
+            <tr class="tasks__item task <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === true)) { print('task--completed'); } if (isset($value['dateOfCompletion']) && isLessThanDay($value['dateOfCompletion'])) { print('task--important'); } ?>">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === 1)) { print('checked'); } ?>>
