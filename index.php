@@ -8,7 +8,7 @@ date_default_timezone_set('Europe/Moscow');
 $show_complete_tasks = rand(0, 1);
 
 $category = ['Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
-$tasks = [['name' => 'Собеседование в IT компании', 'dateOfCompletion' => '01.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Выполнить тестовое задание', 'dateOfCompletion' => '25.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Сделать задание первого раздела', 'dateOfCompletion' => '21.12.2018', 'category' => 'Учеба', 'isCompleted' => true], ['name' => 'Встреча с другом', 'dateOfCompletion' => '22.12.2018', 'category' => 'Входящие', 'isCompleted' => false], ['name' => 'Купить корм для кота', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false], ['name' => 'Заказать пиццу', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false]];
+$tasks = [['name' => 'Собеседование в IT компании', 'dateOfCompletion' => '02.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Выполнить тестовое задание', 'dateOfCompletion' => '25.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Сделать задание первого раздела', 'dateOfCompletion' => '21.12.2018', 'category' => 'Учеба', 'isCompleted' => true], ['name' => 'Встреча с другом', 'dateOfCompletion' => '22.12.2018', 'category' => 'Входящие', 'isCompleted' => false], ['name' => 'Купить корм для кота', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false], ['name' => 'Заказать пиццу', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false]];
 
 $page_content = include_template('index.php', [
     'tasks' => $tasks,
