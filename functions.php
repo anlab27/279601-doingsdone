@@ -30,4 +30,11 @@ function count_tasks(array $list_tasks, string $project) : int {
     return $i;
 }
 
+function isLessThanDay(string $dateOfCompletion) : bool {
+    if (($dateOfCompletion !== '') && ((strtotime($dateOfCompletion . ' 24:00:00') - time()) < 86400)) {
+        return true;
+    }
+        return false;
+}
+
 ?>
