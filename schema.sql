@@ -12,24 +12,24 @@ CREATE TABLE projects (
 
 CREATE TABLE tasks (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `dt_add` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    `dt_completed` DATETIME,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `completed_at` DATETIME DEFAULT NULL,
     `completed_status` INT(11) UNSIGNED,
     `name` CHAR(255) NOT NULL,
     `file_path` CHAR(255),
-    `dt_plan_completed` DATETIME,
+    `deadline` DATETIME  DEFAULT NULL,
     `user_id` INT(11) UNSIGNED NOT NULL,
     `project_id` INT(11) UNSIGNED NOT NULL
 );
 
 CREATE TABLE users (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `dt_add` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `email` CHAR(128) NOT NULL UNIQUE,
     `name` CHAR(255) NOT NULL,
-    `password` CHAR(64)
+    `password` CHAR(255)
 );
 
-CREATE INDEX p_name ON projects(name);
-CREATE INDEX t_name ON tasks(name);
-CREATE INDEX t_dt_completed ON tasks(dt_completed);
+CREATE INDEX p_user ON projects(user_id);
+CREATE INDEX t_user ON tasks(user_id);
+CREATE INDEX t_project ON tasks(project_id);
