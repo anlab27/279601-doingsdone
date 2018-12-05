@@ -14,10 +14,10 @@ INSERT INTO projects SET name = 'Авто', user_id = 1;
 
 -- Добавление список задач
 
-INSERT INTO tasks SET completed_status = 0, name = 'Собеседование в IT компании', deadline = '02.12.2018', user_id = 1, project_id = 3;
-INSERT INTO tasks SET completed_status = 0, name = 'Выполнить тестовое задание', deadline = '25.12.2018', user_id = 1, project_id = 3;
-INSERT INTO tasks SET completed_status = 1, name = 'Сделать задание первого раздела', deadline = '21.12.2018', user_id = 1, project_id = 2;
-INSERT INTO tasks SET completed_status = 0, name = 'Встреча с другом', deadline = '22.12.2018', user_id = 1, project_id = 1;
+INSERT INTO tasks SET completed_status = 0, name = 'Собеседование в IT компании', deadline = '2018-12-02', user_id = 1, project_id = 3;
+INSERT INTO tasks SET completed_status = 0, name = 'Выполнить тестовое задание', deadline = '2018-12-25', user_id = 1, project_id = 3;
+INSERT INTO tasks SET completed_status = 1, name = 'Сделать задание первого раздела', deadline = '2018-12-21', user_id = 1, project_id = 2;
+INSERT INTO tasks SET completed_status = 0, name = 'Встреча с другом', deadline = '2018-12-22', user_id = 1, project_id = 1;
 INSERT INTO tasks SET completed_status = 0, name = 'Купить корм для кота', user_id = 1, project_id = 4;
 INSERT INTO tasks SET completed_status = 0, name = 'Заказать пиццу', user_id = 1, project_id = 4;
 
