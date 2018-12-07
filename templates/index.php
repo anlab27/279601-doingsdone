@@ -22,18 +22,18 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $key => $value): ?>
-        <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === false || ($value['isCompleted'] === true && $show_complete_tasks === 1))): ?>
-            <tr class="tasks__item task <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === true)) { print('task--completed'); } if (isset($value['dateOfCompletion']) && isLessThanDay($value['dateOfCompletion'])) { print('task--important'); } ?>">
+        <?php if (isset($value['completed_status']) && ($value['completed_status'] === '0' || ($value['completed_status'] === '1' && $show_complete_tasks === 1))): ?>
+            <tr class="tasks__item task <?php if (isset($value['completed_status']) && ($value['completed_status'] === '1')) { print('task--completed'); } if (isset($value['deadline']) && isLessThanDay($value['deadline'])) { print('task--important'); } ?>">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
-                        <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if (isset($value['isCompleted']) && ($value['isCompleted'] === 1)) { print('checked'); } ?>>
+                        <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if (isset($value['completed_status']) && ($value['completed_status'] === '1')) { print('checked'); } ?>>
                         <span class="checkbox__text"><?php if (isset($value['name'])) { print(strip_tags($value['name'])); } ?></span>
                     </label>
                 </td>
                         
                 <td class="task__file"></td>
 
-                <td class="task__date"><?php if (isset($value['dateOfCompletion'])) { print(strip_tags($value['dateOfCompletion'])); } ?></td>
+                <td class="task__date"><?php if (isset($value['deadline'])) { print(date('d.m.Y', strtotime($value['deadline']))); } ?></td>
             </tr>
         <?php endif ?>
     <?php endforeach ?>

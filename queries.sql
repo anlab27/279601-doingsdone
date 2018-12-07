@@ -11,6 +11,9 @@ INSERT INTO projects SET name = 'Учеба', user_id = 1;
 INSERT INTO projects SET name = 'Работа', user_id = 1;
 INSERT INTO projects SET name = 'Домашние дела', user_id = 1;
 INSERT INTO projects SET name = 'Авто', user_id = 1;
+INSERT INTO projects SET name = 'Английский', user_id = 2;
+INSERT INTO projects SET name = 'SEO', user_id = 2;
+INSERT INTO projects SET name = 'Книги', user_id = 2;
 
 -- Добавление список задач
 
@@ -20,6 +23,9 @@ INSERT INTO tasks SET completed_status = 1, name = 'Сделать задани�
 INSERT INTO tasks SET completed_status = 0, name = 'Встреча с другом', deadline = '2018-12-22', user_id = 1, project_id = 1;
 INSERT INTO tasks SET completed_status = 0, name = 'Купить корм для кота', user_id = 1, project_id = 4;
 INSERT INTO tasks SET completed_status = 0, name = 'Заказать пиццу', user_id = 1, project_id = 4;
+INSERT INTO tasks SET completed_status = 0, name = 'Пройти тест на уровень владения английским', deadline = '2018-12-20', user_id = 2, project_id = 6;
+INSERT INTO tasks SET completed_status = 0, name = 'Семь тучных лет', deadline = '2018-12-13', user_id = 2, project_id = 8;
+INSERT INTO tasks SET completed_status = 0, name = 'Слепота', deadline = '2018-12-03', user_id = 2, project_id = 8;
 
 -- Получить список из всех проектов для одного пользователя
 
