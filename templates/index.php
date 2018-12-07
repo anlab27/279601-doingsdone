@@ -33,7 +33,7 @@
                         
                 <td class="task__file"></td>
 
-                <td class="task__date"><?php if (isset($value['deadline'])) { print(date('d.m.Y', strtotime(strip_tags($value['deadline'])))); } ?></td>
+                <td class="task__date"><?php if (isset($value['deadline'])) { print(date('d.m.Y', strtotime($value['deadline']))); } ?></td>
             </tr>
         <?php endif ?>
     <?php endforeach ?>

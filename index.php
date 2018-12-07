@@ -12,7 +12,7 @@ mysqli_set_charset($link, "utf8");
 
 if (!link) {
     $error = mysqli_connect_error();
-    $content = include_template('error.php', ['error' => $error]);
+    $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
     print($content);
     
 } else {
@@ -20,10 +20,10 @@ if (!link) {
     $result = mysqli_query($link, $sql);
         
     if ($result) {
-        $category = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
         $error = mysqli_error($link);
-        $content = include_template('error.php', ['error' => $error]);
+        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
     }
 
     $sql = 'SELECT * FROM tasks WHERE user_id = 1';
@@ -33,7 +33,7 @@ if (!link) {
         $tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
         $error = mysqli_error($link);
-        $content = include_template('error.php', ['error' => $error]);
+        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
     }
 }
 
@@ -44,7 +44,7 @@ $page_content = include_template('index.php', [
 
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
-    'category' => $category,
+    'categories' => $categories,
     'tasks' => $tasks,
     'title' => 'Дела в порядке'
     ]);
