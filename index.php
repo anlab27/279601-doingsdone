@@ -25,7 +25,7 @@ if (!link) {
         $error = mysqli_error($link);
         $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
     }
-
+    
     $sql = 'SELECT * FROM tasks WHERE user_id = 1';
     $result = mysqli_query($link, $sql);
         
@@ -35,10 +35,28 @@ if (!link) {
         $error = mysqli_error($link);
         $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
     }
+    
+    $p_id = $_GET['project_id'];
+    
+    if (isset($p_id)) {
+        $sql = 'SELECT * FROM tasks WHERE user_id = 1 AND project_id = ' . $p_id;
+        $result = mysqli_query($link, $sql);
+        
+        if ($result) {
+            $tasksOnProject = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        } else {
+           $error = mysqli_error($link);
+           $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
+        }
+        
+    } else {
+        http_response_code(404);
+        $content = include_template('layout.php', ['content' => 'Страница не найдена']);    
+    }
 }
 
 $page_content = include_template('index.php', [
-    'tasks' => $tasks,
+    'tasksOnProject' => $tasksOnProject,
     'show_complete_tasks' => $show_complete_tasks
     ]);
 
