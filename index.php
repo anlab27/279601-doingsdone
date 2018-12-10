@@ -1,13 +1,14 @@
 <?php
 
 require_once('functions.php');
+require_once('config.php');
 
 date_default_timezone_set('Europe/Moscow');
 
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 
-$link = mysqli_connect('localhost', 'root', '', 'doingsdone');
+$link = mysqli_connect('localhost', 'root', '', DB_NAME);
 mysqli_set_charset($link, "utf8");
 
 if (!link) {
