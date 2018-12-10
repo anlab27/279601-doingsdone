@@ -7,8 +7,35 @@ date_default_timezone_set('Europe/Moscow');
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 
-$category = ['Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
-$tasks = [['name' => 'Собеседование в IT компании', 'dateOfCompletion' => '02.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Выполнить тестовое задание', 'dateOfCompletion' => '25.12.2018', 'category' => 'Работа', 'isCompleted' => false], ['name' => 'Сделать задание первого раздела', 'dateOfCompletion' => '21.12.2018', 'category' => 'Учеба', 'isCompleted' => true], ['name' => 'Встреча с другом', 'dateOfCompletion' => '22.12.2018', 'category' => 'Входящие', 'isCompleted' => false], ['name' => 'Купить корм для кота', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false], ['name' => 'Заказать пиццу', 'dateOfCompletion' => '', 'category' => 'Домашние дела', 'isCompleted' => false]];
+$link = mysqli_connect('localhost', 'root', '', 'doingsdone');
+mysqli_set_charset($link, "utf8");
+
+if (!link) {
+    $error = mysqli_connect_error();
+    $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
+    print($content);
+    
+} else {
+    $sql = 'SELECT * FROM projects WHERE user_id = 1';
+    $result = mysqli_query($link, $sql);
+        
+    if ($result) {
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $error = mysqli_error($link);
+        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
+    }
+
+    $sql = 'SELECT * FROM tasks WHERE user_id = 1';
+    $result = mysqli_query($link, $sql);
+        
+    if ($result) {
+        $tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $error = mysqli_error($link);
+        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
+    }
+}
 
 $page_content = include_template('index.php', [
     'tasks' => $tasks,
@@ -17,7 +44,7 @@ $page_content = include_template('index.php', [
 
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
-    'category' => $category,
+    'categories' => $categories,
     'tasks' => $tasks,
     'title' => 'Дела в порядке'
     ]);

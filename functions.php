@@ -22,7 +22,7 @@ function count_tasks(array $list_tasks, string $project) : int {
     $i = 0;
     
     foreach ($list_tasks as $value) {
-        if (isset($value['category']) && $value['category'] === $project) {
+        if (isset($value['project_id']) && $value['project_id'] === $project) {
             $i++;
         }
     }
@@ -31,7 +31,7 @@ function count_tasks(array $list_tasks, string $project) : int {
 }
 
 function isLessThanDay(string $dateOfCompletion) : bool {
-    if (($dateOfCompletion !== '') && ((strtotime($dateOfCompletion . ' 24:00:00') - time()) < 86400)) {
+    if (($dateOfCompletion !== '') && ((strtotime($dateOfCompletion) + 86400 - time()) < 86400)) {
         return true;
     }
         return false;
