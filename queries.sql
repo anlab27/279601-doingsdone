@@ -37,7 +37,7 @@ SELECT * FROM tasks WHERE project_id = 3;
 
 -- Пометить задачу как выполненную
 
-UPDATE tasks SET completed_status = 1, complated_at = CURDATE() WHERE id = 4;
+UPDATE tasks SET completed_status = 1, completed_at = CURDATE() WHERE id = 4;
 
 -- Получить все задачи для завтрашнего дня
 

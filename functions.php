@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once('mysql_helper.php');
+
 function include_template(string $name, array $data) : string {
     $name = 'templates/' . $name;
     $result = '';
@@ -37,54 +39,39 @@ function isLessThanDay(string $dateOfCompletion) : bool {
         return false;
 }
 
-
-function getProjects() {
-    $link = mysqli_connect('localhost', 'root', '', 'doingsdone');
+function connectToMysql() {
+    $link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     mysqli_set_charset($link, "utf8");
-    
-    if (!link) {
-        $error = mysqli_connect_error();
-        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
-        print($content);
-    
-    } else {
-        $sql = 'SELECT * FROM projects WHERE user_id = 1';
-        $result = mysqli_query($link, $sql);
-        
-        if ($result) {
-            $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        } else {
-            $error = mysqli_error($link);
-            $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
-        }
-    }
-    
-    mysqli_close($link);
+    return $link;
 }
 
-
-function getTasks() {
-    $link = mysqli_connect('localhost', 'root', '', 'doingsdone');
-    mysqli_set_charset($link, "utf8");
-    
-    if (!link) {
-        $error = mysqli_connect_error();
-        $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
-        print($content);
-    
+function getProjects(int $id) : array {
+    $link = connectToMysql();
+    if (!$link) {
+        die(mysqli_connect_error());
     } else {
-        $sql = 'SELECT * FROM tasks WHERE user_id = 1';
-        $result = mysqli_query($link, $sql);
-        
-        if ($result) {
-            $tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        } else {
-            $error = mysqli_error($link);
-            $content = include_template('layout.php', ['content' => 'Ошибка сервера']);
-        }
-    }
-    mysqli_close($link);
+        $sql = 'SELECT * FROM projects WHERE user_id = ?';
+        $stmt = db_get_prepare_stmt($link, $sql, [$id]);
+        $categories = db_get_result_stmt($stmt);
+        mysqli_close($link);
+        return $categories;
+    }    
 }
 
-
-?>
+function getTasks(int $userId, int $projectId = null) : array {
+    $link = connectToMysql();
+    if (!$link) {
+        die(mysqli_connect_error());
+    } else {
+        $sql = 'SELECT * FROM tasks WHERE user_id = ?';
+        $arguments = [$userId];
+        if ($projectId !== null) {
+            $sql .= ' AND WHERE project_id = ?';
+            $arguments[] = $projectId;
+        }
+        $stmt = db_get_prepare_stmt($link, $sql, $arguments);
+        $tasks = db_get_result_stmt($stmt);
+        mysqli_close($link);
+        return $tasks;
+    }
+}
