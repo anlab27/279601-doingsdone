@@ -16,16 +16,19 @@ if (!isset($_GET['project_id'])) {
         'tasks' => getTasks($userId),
         'show_complete_tasks' => $show_complete_tasks        
     ]);
-} else if ($_GET['project_id'] === 0) {
-    $title = '404';
-    http_response_code(404);
-    $page_content = '404 - Страница не найдена';
 } else {
-    $title = 'Дела в порядке - задачи по проекту';
-    $page_content = include_template('index.php', [
-        'tasks' => getTasks($userId, $_GET['project_id']),
-        'show_complete_tasks' => $show_complete_tasks
-    ]);
+    $tasks = getTasks($userId, (int) $_GET['project_id']);
+    if (count($tasks) === 0) {
+        $title = '404';
+        http_response_code(404);
+        $page_content = '404 - Страница не найдена';
+    } else {
+        $title = 'Дела в порядке - задачи по проекту';
+        $page_content = include_template('index.php', [
+            'tasks' => getTasks($userId, $_GET['project_id']),
+            'show_complete_tasks' => $show_complete_tasks
+        ]);
+    }
 }
 
 $layout_content = include_template('layout.php', [
