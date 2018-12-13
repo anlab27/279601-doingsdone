@@ -22,7 +22,7 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $key => $value): ?>
-        <?php if (isset($value['completed_status']) && ($value['completed_status'] === '0' || ($value['completed_status'] === '1' && $show_complete_tasks === 1))): ?>
+        <?php if (isset($value['completed_status']) && ($value['completed_status'] === 0 || ($value['completed_status'] === 1 && $show_complete_tasks === 1))): ?>
             <tr class="tasks__item task <?php if (isset($value['completed_status']) && ($value['completed_status'] === '1')) { print('task--completed'); } if (isset($value['deadline']) && isLessThanDay($value['deadline'])) { print('task--important'); } ?>">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
