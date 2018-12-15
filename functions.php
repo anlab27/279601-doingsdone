@@ -70,3 +70,9 @@ function getTasks(int $userId, int $projectId = null) : array {
     mysqli_close($link);
     return $tasks;
 }
+
+function validateDate($date, $format = 'd.m.Y')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
+}
